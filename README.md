@@ -5,3 +5,4 @@
 [] try automate release to npm
 [] try github actions
 [] docusaurus
+[] vitest
