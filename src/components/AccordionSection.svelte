@@ -1,23 +1,50 @@
 <script lang="ts">
+  import { getContext, onMount, tick } from "svelte";
+  import { writable } from "svelte/store";
+  import { slide } from "svelte/transition";
   import Chevron from "@/components/Chevron.svelte";
-  import { onMount } from "svelte";
+  import type { Context } from "@/lib/model.type";
+  import sectionOpenEvent from "@/lib/section-open.event";
 
   export let id: string;
+  export let isOpen = false;
 
-  let isOpened: boolean;
+  let contentHeight: number;
+  let headerHeight: number;
 
-  let ref: HTMLDivElement | undefined;
-  let height: number;
+  const { sections } = getContext<Context>("model");
+
+  const height = writable(0);
+  const refHeaderHeight = writable(0);
+  const refContentHeight = writable(0);
+  const isOpened = writable(isOpen);
+
+  $sections[id] = {
+    isOpened: isOpened,
+    refHeaderHeight: refHeaderHeight,
+    refContentHeight: refContentHeight,
+    height: height,
+  };
 
   onMount(() => {
-    console.log(ref, id);
+    $refContentHeight = contentHeight ?? 0;
+    $refHeaderHeight = headerHeight;
+    return () => {
+      $sections[id] = undefined;
+    };
   });
 
-  function handleHeadingClick() {
-    isOpened = !isOpened;
+  async function handleHeadingClick() {
+    sectionOpenEvent.publish({ id });
+    $isOpened = !$isOpened;
+    await tick();
+    $refContentHeight = contentHeight;
+    $sections[id] = $sections[id];
   }
 
-  $: forcedHeight = isOpened ? height : 0;
+  $: {
+    $refHeaderHeight = headerHeight;
+  }
 </script>
 
 <section class="accordion-section">
@@ -25,28 +52,34 @@
     class="heading"
     on:click={handleHeadingClick}
     on:keydown={handleHeadingClick}
+    bind:offsetHeight={headerHeight}
     aria-hidden="true"
   >
-    <Chevron rotated={isOpened} />
-    Section: {id} h: {height}
+    <Chevron rotated={$isOpened} />
+    Section: {id}, content: {$refContentHeight}px, header: {$refHeaderHeight}px,
+    height: {$height}px
   </div>
-  <!-- <div class="content" style:height="{forcedHeight}px"> -->
-  <div class="content" style:height="{forcedHeight}px">
-    <div style="overflow:none" bind:clientHeight={height}>
-      <slot />
+  {#if $isOpened}
+    <div
+      transition:slide={{ duration: 200 }}
+      class="content"
+      style:height="{$height}px"
+    >
+      <div style="overflow:none" bind:clientHeight={contentHeight}>
+        <slot />
+      </div>
     </div>
-  </div>
+  {/if}
 </section>
 
 <style>
   .accordion-section {
-    padding: 1px;
-    border: 2px solid rgb(21, 166, 106);
     background-color: #4a4a4a;
   }
 
   .heading {
     display: flex;
+    padding: 4px;
     gap: 8px;
     cursor: pointer;
   }

@@ -1,11 +1,10 @@
 <script lang="ts">
   import Accordion from "@/components/Accordion.svelte";
-  import AccordionSection from "@/components/AccordionSection.svelte";
 </script>
 
 <svelte:head>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true" />
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap"
     rel="stylesheet"
@@ -13,11 +12,13 @@
 </svelte:head>
 
 <div class="sample1">
-  <Accordion>
-    {#each { length: 5 } as section, i}
-      <AccordionSection id={String(i)}>
-        Content of {i}
-      </AccordionSection>
+  <Accordion let:Section>
+    {#each { length: 6 } as section, i}
+      <Section id={String(i)}>
+        <div style:height={`${i * 50}px`}>
+          Content of {i}
+        </div>
+      </Section>
     {/each}
   </Accordion>
 </div>
@@ -28,7 +29,8 @@
   }
 
   .sample1 {
-    height: 350px;
+    height: 550px;
+    overflow: hidden;
     font-size: 12px;
     background-color: #626262;
   }
