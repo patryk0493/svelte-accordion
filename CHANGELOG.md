@@ -1,5 +1,11 @@
 # svelte-accordion
 
+## 0.0.4
+
+### Patch Changes
+
+- 10f4060: Fix for versioning
+
 ## 0.0.3
 
 ### Patch Changes
