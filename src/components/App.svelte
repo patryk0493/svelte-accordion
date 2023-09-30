@@ -11,12 +11,16 @@
   />
 </svelte:head>
 
-<div class="sample1">
+<div class="sample1" style:height="550px">
   <Accordion let:Section>
     {#each { length: 6 } as section, i}
       <Section id={String(i)}>
-        <div style:height={`${i * 50}px`}>
-          Content of {i}
+        <div
+          style:height={`${i * 60}px`}
+          style:padding={`0.5rem`}
+          style:background-color="rgb(47 50 89 / 53%)"
+        >
+          A content of section: {i}
         </div>
       </Section>
     {/each}
@@ -29,7 +33,6 @@
   }
 
   .sample1 {
-    height: 550px;
     overflow: hidden;
     font-size: 12px;
     background-color: #626262;

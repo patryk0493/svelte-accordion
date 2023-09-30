@@ -38,7 +38,6 @@
     sectionOpenEvent.publish({ id });
     $isOpened = !$isOpened;
     await tick();
-    $refContentHeight = contentHeight;
     $sections[id] = $sections[id];
   }
 
@@ -59,17 +58,17 @@
     Section: {id}, content: {$refContentHeight}px, header: {$refHeaderHeight}px,
     height: {$height}px
   </div>
-  {#if $isOpened}
+  {#key $isOpened}
     <div
       transition:slide={{ duration: 200 }}
       class="content"
       style:height="{$height}px"
     >
-      <div style="overflow:none" bind:clientHeight={contentHeight}>
+      <div style="overflow:none" bind:offsetHeight={contentHeight}>
         <slot />
       </div>
     </div>
-  {/if}
+  {/key}
 </section>
 
 <style>

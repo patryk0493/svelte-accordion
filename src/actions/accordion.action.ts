@@ -12,38 +12,98 @@ export function accordion(
   node: HTMLElement,
   { parentHeight, sections }: AccordionActionOptions,
 ) {
-  parentHeight.set(node.parentElement?.clientHeight ?? 0);
+  const leftSpace = derived(
+    [sections, parentHeight],
+    ([$sections, $parentHeight]) => {
+      return Object.keys($sections).reduce((prev, id) => {
+        if (!$sections[id]) return prev;
+        const { isOpened, refContentHeight, refHeaderHeight } = $sections[id]!;
+        return (
+          prev -
+          (get(isOpened)
+            ? get(refContentHeight) + get(refHeaderHeight)
+            : get(refHeaderHeight))
+        );
+      }, $parentHeight ?? 0);
+    },
+  );
 
-  let left = derived([sections, parentHeight], ([$sections, $parentHeight]) => {
-    return Object.keys($sections).reduce((prev, id) => {
-      if (!$sections[id]) return prev;
-      return (
-        prev -
-        (get($sections[id]!.isOpened)
-          ? (get($sections[id]!.refContentHeight) ?? 0) +
-          get($sections[id]!.refHeaderHeight) ?? 0
-          : get($sections[id]!.refHeaderHeight) ?? 0)
-      );
-    }, $parentHeight ?? 0);
+  const isSpaceLeft = derived(leftSpace, ($leftSpace) => $leftSpace <= 0);
+
+  const isMoreThanOneOpened = derived(sections, ($sections) => {
+    return (
+      Object.keys($sections).filter(
+        (id) => $sections[id] && get($sections[id]!.isOpened),
+      ).length >= 2
+    );
   });
 
-  function onSectionOpen(e: CustomEvent<SectionOpenDetails>) {
-    const { height, isOpened, refHeaderHeight } = get(sections)[e.detail.id]!;
-    const _left = get(left);
+  const lastOpenedSection = derived(
+    [sections, isMoreThanOneOpened],
+    ([$sections, $isMoreThanOneOpened]) => {
+      if (!$isMoreThanOneOpened) return undefined;
+      const id = Object.keys($sections).findLast((id) =>
+        get($sections[id]!.isOpened),
+      );
+      return id ? $sections[id] : undefined;
+    },
+  );
 
-    console.log(e.detail, _left);
-    const _isOpened = get(isOpened);
-    const res = _left;
-    const h = _isOpened ? 0 : res;
-    height.set(h);
+  function onSectionOpen({ detail: { id } }: CustomEvent<SectionOpenDetails>) {
+    const _sections = get(sections);
+    const changes = calculateChanges({
+      id,
+      sections: _sections,
+      leftSpace: get(leftSpace),
+      isSpaceLeft: get(isSpaceLeft),
+    });
+
+    changes.forEach(({ id, height }) => {
+      _sections[id]!.height.set(height);
+    });
   }
 
   const unsubscribe = sectionOpenEvent.subscribe(onSectionOpen);
 
   return {
-    update() { },
     destroy() {
       unsubscribe();
     },
   };
+}
+
+type Args = {
+  id: string;
+  sections: SectionLookup;
+  leftSpace: number;
+  isSpaceLeft: boolean;
+};
+
+function calculateChanges({
+  id,
+  sections,
+  leftSpace,
+  isSpaceLeft,
+}: Args): Array<{ id: string; height: number }> {
+  const { isOpened: _isOpened, refContentHeight } = sections[id]!;
+  const contentHeight = get(refContentHeight);
+
+  // ! no changes
+  if (contentHeight <= 0) return [];
+
+  // ! one change
+  const isOpened = get(_isOpened);
+  if (isOpened === true) {
+    return [{ id, height: 0 }];
+  }
+
+  // ! two changes
+  let result = leftSpace;
+
+  const isContentHalfOfLeftSpace = contentHeight <= leftSpace / 2;
+  if (isContentHalfOfLeftSpace) {
+    result = contentHeight;
+  }
+
+  return [{ id, height: result }];
 }

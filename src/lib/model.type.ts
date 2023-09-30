@@ -5,7 +5,7 @@ export type SectionLookup = Record<
   | {
       isOpened: Writable<boolean>;
       refHeaderHeight: Writable<number>;
-      refContentHeight: Writable<number | undefined>;
+      refContentHeight: Writable<number>;
       height: Writable<number>;
     }
   | undefined
