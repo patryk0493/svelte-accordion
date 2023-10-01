@@ -1,4 +1,4 @@
-import type { SectionToggleDetails } from "@/lib/events.type";
+import type { SectionToggleDetails } from "../lib/events.type";
 
 export const TOGGLE_EVENT_NAME = 'section:toggle';
 

@@ -1,8 +1,8 @@
 import { derived, get, type Writable } from "svelte/store";
-import type { SectionToggleDetails } from "@/lib/events.type";
-import type { SectionLookup } from "@/lib/model.type";
-import type { WritableWithValue } from "@/utils/with-value";
-import { calculateChanges } from "@/utils/calculate-changes";
+import type { SectionToggleDetails } from "../lib/events.type";
+import type { SectionLookup } from "../lib/model.type";
+import type { WritableWithValue } from "../utils/with-value";
+import { calculateChanges } from "../utils/calculate-changes";
 import sectionOpenEvent from "../lib/section-toggle.event";
 
 type AccordionActionOptions = {
