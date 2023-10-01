@@ -1,1 +1,1 @@
-export type SectionOpenDetails = { id: string };
+export type SectionToggleDetails = { id: string };
