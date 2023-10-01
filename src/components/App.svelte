@@ -33,7 +33,7 @@
   }
 
   .sample1 {
-    overflow: hidden;
+    overflow-y: auto;
     font-size: 12px;
     background-color: #626262;
   }

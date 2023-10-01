@@ -4,7 +4,7 @@
   import { slide } from "svelte/transition";
   import Chevron from "@/components/Chevron.svelte";
   import type { Context } from "@/lib/model.type";
-  import sectionOpenEvent from "@/lib/section-open.event";
+  import sectionToggleEvent from "../lib/section-toggle.event";
 
   export let id: string;
   export let isOpen = false;
@@ -28,21 +28,24 @@
 
   onMount(() => {
     $refContentHeight = contentHeight ?? 0;
-    $refHeaderHeight = headerHeight;
     return () => {
       $sections[id] = undefined;
     };
   });
 
   async function handleHeadingClick() {
-    sectionOpenEvent.publish({ id });
+    sectionToggleEvent.publish({ id });
     $isOpened = !$isOpened;
     await tick();
     $sections[id] = $sections[id];
   }
 
   $: {
-    $refHeaderHeight = headerHeight;
+    const newHeight = headerHeight ?? 0;
+    if (newHeight !== $refHeaderHeight) {
+      $refHeaderHeight = newHeight;
+      $sections[id] = $sections[id];
+    }
   }
 </script>
 
@@ -84,7 +87,7 @@
   }
 
   .content {
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #242424;
   }
 </style>
