@@ -4,7 +4,7 @@
   import { slide } from "svelte/transition";
   import Chevron from "@/components/Chevron.svelte";
   import type { Context } from "@/lib/model.type";
-  import sectionOpenEvent from "@/lib/section-open.event";
+  import sectionToggleEvent from "../lib/section-toggle.event";
 
   export let id: string;
   export let isOpen = false;
@@ -28,22 +28,24 @@
 
   onMount(() => {
     $refContentHeight = contentHeight ?? 0;
-    $refHeaderHeight = headerHeight;
     return () => {
       $sections[id] = undefined;
     };
   });
 
   async function handleHeadingClick() {
-    sectionOpenEvent.publish({ id });
+    sectionToggleEvent.publish({ id });
     $isOpened = !$isOpened;
     await tick();
-    $refContentHeight = contentHeight;
     $sections[id] = $sections[id];
   }
 
   $: {
-    $refHeaderHeight = headerHeight;
+    const newHeight = headerHeight ?? 0;
+    if (newHeight !== $refHeaderHeight) {
+      $refHeaderHeight = newHeight;
+      $sections[id] = $sections[id];
+    }
   }
 </script>
 
@@ -59,17 +61,17 @@
     Section: {id}, content: {$refContentHeight}px, header: {$refHeaderHeight}px,
     height: {$height}px
   </div>
-  {#if $isOpened}
+  {#key $isOpened}
     <div
       transition:slide={{ duration: 200 }}
       class="content"
       style:height="{$height}px"
     >
-      <div style="overflow:none" bind:clientHeight={contentHeight}>
+      <div style="overflow:none" bind:offsetHeight={contentHeight}>
         <slot />
       </div>
     </div>
-  {/if}
+  {/key}
 </section>
 
 <style>
@@ -85,7 +87,7 @@
   }
 
   .content {
-    overflow-y: scroll;
+    overflow-y: auto;
     background-color: #242424;
   }
 </style>
