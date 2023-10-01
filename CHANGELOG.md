@@ -1,5 +1,11 @@
 # svelte-accordion
 
+## 0.0.5
+
+### Patch Changes
+
+- eef3697: Managing sections
+
 ## 0.0.4
 
 ### Patch Changes
