@@ -1,5 +1,14 @@
 # svelte-epic-accordion
 
+## 0.0.6
+
+### Patch Changes
+
+- 08739ca: _NPM publishing_
+
+  - removed path support
+  - renamed repo to `svelte-epic-accordion`
+
 ## 0.0.5
 
 ### Patch Changes
