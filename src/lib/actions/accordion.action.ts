@@ -1,9 +1,9 @@
 import { derived, get, type Writable } from "svelte/store";
-import type { SectionToggleDetails } from "@/lib/events.type";
-import type { SectionLookup } from "@/lib/model.type";
-import type { WritableWithValue } from "@/utils/with-value";
-import { calculateChanges } from "@/utils/calculate-changes";
-import sectionOpenEvent from "../lib/section-toggle.event";
+import type { SectionToggleDetails } from "../contracts/events.type";
+import type { SectionLookup } from "../contracts/model.type";
+import type { WritableWithValue } from "../utils/with-value";
+import { calculateChanges } from "../utils/calculate-changes";
+import sectionOpenEvent from "../events/section-toggle.event";
 
 type AccordionActionOptions = {
   parentHeight: Writable<number>;
@@ -48,7 +48,9 @@ export function accordion(
     );
   });
 
-  function onSectionOpen({ detail: { id } }: CustomEvent<SectionToggleDetails>) {
+  function onSectionOpen({
+    detail: { id },
+  }: CustomEvent<SectionToggleDetails>) {
     const _sections = sections.value();
     const changes = calculateChanges({
       id,

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import chevron from "@/assets/chevron.svg";
+  import chevron from "../assets/chevron.svg";
 
   export let rotated = false;
 </script>

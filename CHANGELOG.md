@@ -1,4 +1,4 @@
-# svelte-accordion
+# svelte-epic-accordion
 
 ## 0.0.5
 
