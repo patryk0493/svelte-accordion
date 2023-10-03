@@ -1,4 +1,4 @@
-import { get, type Readable, type Writable } from "svelte/store";
+import { get, type Writable } from "svelte/store";
 
 export type WritableWithValue<
   K = any,

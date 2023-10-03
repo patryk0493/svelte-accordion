@@ -3,8 +3,8 @@
   import { writable } from "svelte/store";
   import { slide } from "svelte/transition";
   import Chevron from "../components/Chevron.svelte";
-  import type { Context } from "../lib/model.type";
-  import sectionToggleEvent from "../lib/section-toggle.event";
+  import type { Context } from "../contracts/model.type";
+  import sectionToggleEvent from "../events/section-toggle.event";
 
   export let id: string;
   export let isOpen = false;

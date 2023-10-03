@@ -2,7 +2,7 @@
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
   import AccordionSection from "./AccordionSection.svelte";
-  import type { Context, SectionLookup } from "../lib/model.type";
+  import type { Context, SectionLookup } from "../contracts/model.type";
   import { accordion } from "../actions/accordion.action";
   import { parentResizeObserver } from "../actions/parent-size-observer.action";
   import { withValue } from "../utils/with-value";

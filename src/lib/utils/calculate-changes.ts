@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import type { SectionLookup } from "../lib/model.type";
+import type { SectionLookup } from "../contracts/model.type";
 
 type CalculateChangesOptions = {
   id: string;
