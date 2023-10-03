@@ -6,9 +6,28 @@ Project is still in alpha! Try demo: [here](https://www.demo.pl)
 
 ## Installation
 
-`npm install svelte-epic-accordion`
+`npm install -D svelte-epic-accordion`
+
+`pnpm i -D svelte-epic-accordion`
+
+`yarn add -D svelte-epic-accordion`
 
 ## How to use?
+
+```js
+<script>
+  import Accordion from "svelte-epic-accordion";
+</script>
+
+<Accordion let:Section>
+	<Section id='one'>
+		Section one
+	</Section>
+	<Section id='two'>
+		Section two
+	</Section>
+</Accordion>
+```
 
 # TODO:
 
