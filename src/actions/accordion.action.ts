@@ -48,7 +48,9 @@ export function accordion(
     );
   });
 
-  function onSectionOpen({ detail: { id } }: CustomEvent<SectionToggleDetails>) {
+  function onSectionOpen({
+    detail: { id },
+  }: CustomEvent<SectionToggleDetails>) {
     const _sections = sections.value();
     const changes = calculateChanges({
       id,
