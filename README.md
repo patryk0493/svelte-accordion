@@ -14,7 +14,7 @@ Project is still in alpha! Try demo: [here](https://www.demo.pl)
 
 ## How to use?
 
-```js
+```
 <script>
   import Accordion from "svelte-epic-accordion";
 </script>

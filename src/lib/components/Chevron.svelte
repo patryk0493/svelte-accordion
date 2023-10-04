@@ -4,7 +4,13 @@
   export let rotated = false;
 </script>
 
-<img src={chevron} alt="chevron" class:rotate-90={rotated} class="button" />
+<img
+  src={chevron}
+  alt="chevron"
+  data-testid="chevron"
+  class:rotate-90={rotated}
+  class="button"
+/>
 
 <style>
   .rotate-90 {
