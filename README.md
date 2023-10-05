@@ -1,4 +1,4 @@
-# Svelte Accordion component
+# Svelte Epic Accordion 🪗
 
 ## Svelte component inspired by Visual Studio Code
 
@@ -40,7 +40,7 @@ Project is still in alpha! Try demo: [here](https://www.demo.pl)
 - docusaurus
 - styling
 - aside slot
-- vitest
+- [x] vitest
 
 ## License
 
