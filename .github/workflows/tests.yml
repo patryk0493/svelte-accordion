@@ -22,6 +22,9 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
+      - name: Install Svelte
+        run: yarn add svelte -P
+
       - name: Execute Unit tests
         run: yarn test:coverage
 
