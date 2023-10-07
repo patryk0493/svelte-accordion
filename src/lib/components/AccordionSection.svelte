@@ -5,6 +5,7 @@
   import Chevron from "../components/Chevron.svelte";
   import type { Context } from "../contracts/model.type";
   import sectionToggleEvent from "../events/section-toggle.event";
+  import { CONTEXT_KEY } from "../utils/context-key";
 
   export let id: string;
   export let isOpen = false;
@@ -12,7 +13,7 @@
   let contentHeight: number;
   let headerHeight: number;
 
-  const { sections } = getContext<Context>("model");
+  const { sections } = getContext<Context>(CONTEXT_KEY);
 
   const height = writable(0);
   const refHeaderHeight = writable(0);
@@ -49,12 +50,17 @@
   }
 </script>
 
-<section class="accordion-section">
+<section
+  class="accordion-section"
+  class:open={isOpened}
+  data-testid="accordion-section-{id}"
+>
   <div
     class="heading"
     on:click={handleHeadingClick}
     on:keydown={handleHeadingClick}
     bind:offsetHeight={headerHeight}
+    data-testid="heading-{id}"
     aria-hidden="true"
   >
     <Chevron rotated={$isOpened} />

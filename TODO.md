@@ -1,0 +1,11 @@
+- [x] create the component
+- [x] try changesets
+- [x] try github actions
+- [x] TS typings
+- [x] vitest
+- aside slot
+- Github page
+- styling
+- build ONLY with rollup
+- docusaurus
+- try automate release to npm

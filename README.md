@@ -1,10 +1,14 @@
-# Svelte Accordion component
+# 🪗 Svelte Epic Accordion 🪗
 
 ## Svelte component inspired by Visual Studio Code
 
-Project is still in alpha! Try demo: [here](https://www.demo.pl)
+Project is still in beta!  <!-- Try demo: [here](https://www.demo.pl) -->
 
-## Installation
+[![npm version](https://badge.fury.io/js/svelte-epic-accordion.svg)](https://badge.fury.io/js/svelte-epic-accordion)
+![Release](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/release.yml/badge.svg)
+![Tests](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/tests.yml/badge.svg)
+
+## 📔 Installation
 
 `npm install -D svelte-epic-accordion`
 
@@ -12,9 +16,9 @@ Project is still in alpha! Try demo: [here](https://www.demo.pl)
 
 `yarn add -D svelte-epic-accordion`
 
-## How to use?
+## ❓ How to use❓
 
-```js
+```svelte
 <script>
   import Accordion from "svelte-epic-accordion";
 </script>
@@ -29,18 +33,9 @@ Project is still in alpha! Try demo: [here](https://www.demo.pl)
 </Accordion>
 ```
 
-# TODO:
+# 🎯 Goal :
 
-- [x] create the component
-- [x] try changesets
-- [x] try github actions
-- [x] TS typings
-- build ONLY with rollup
-- try automate release to npm
-- docusaurus
-- styling
-- aside slot
-- vitest
+See [TODO](https://github.com/janosh/svelte-multiselect/pull/217) list
 
 ## License
 
