@@ -7,7 +7,7 @@
     "name": "Patryk Eliasz"
   },
   "license": "MIT",
-  "version": "0.0.6-alpha",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.js",
   "keywords": [

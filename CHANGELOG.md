@@ -4,6 +4,15 @@
 
 ### Patch Changes
 
+- 147809b: - Added vitest
+  - Docs updates
+  - created TODO.md
+  - added GH Action for creating unit test report
+
+## 0.0.6
+
+### Patch Changes
+
 - 08739ca: _NPM publishing_
 
   - removed path support
