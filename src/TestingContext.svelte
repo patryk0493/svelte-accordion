@@ -1,8 +1,5 @@
 <script lang="ts">
-  import { SvelteComponent, setContext } from "svelte";
-
-  // type T = $$Generic;
-  // export let Component: SvelteComponent;
+  import { setContext } from "svelte";
 
   export let Component: any;
   export let contextKey: string;

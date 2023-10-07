@@ -2,7 +2,7 @@
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
   import AccordionSection from "./AccordionSection.svelte";
-  import type { Context, SectionLookup } from "../contracts/model.type";
+  import type { Context } from "../contracts/model.type";
   import { accordion } from "../actions/accordion.action";
   import { parentResizeObserver } from "../actions/parent-size-observer.action";
   import { CONTEXT_KEY } from "../utils/context-key";
@@ -15,6 +15,7 @@
 </script>
 
 <main
+  data-testid="accordion"
   use:accordion={{ parentHeight, sections }}
   use:parentResizeObserver={{ parentHeight }}
   {...$$restProps}

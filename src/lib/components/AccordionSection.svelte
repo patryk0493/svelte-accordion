@@ -50,12 +50,17 @@
   }
 </script>
 
-<section class="accordion-section" data-testid="accordion-section-{id}">
+<section
+  class="accordion-section"
+  class:open={isOpened}
+  data-testid="accordion-section-{id}"
+>
   <div
     class="heading"
     on:click={handleHeadingClick}
     on:keydown={handleHeadingClick}
     bind:offsetHeight={headerHeight}
+    data-testid="heading-{id}"
     aria-hidden="true"
   >
     <Chevron rotated={$isOpened} />

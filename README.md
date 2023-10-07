@@ -1,8 +1,12 @@
-# Svelte Epic Accordion 🪗
+# 🪗 Svelte Epic Accordion 🪗
 
 ## Svelte component inspired by Visual Studio Code
 
 Project is still in alpha! Try demo: [here](https://www.demo.pl)
+
+[![npm version](https://badge.fury.io/js/svelte-epic-accordion.svg)](https://badge.fury.io/js/svelte-epic-accordion)
+![Release](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/release.yml/badge.svg)
+![Tests](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/tests.yml/badge.svg)
 
 ## Installation
 
