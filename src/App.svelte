@@ -15,6 +15,13 @@
   <Accordion let:Section>
     {#each { length: 6 } as section, i}
       <Section id={String(i)}>
+        <div slot="header">header {i}</div>
+        <div slot="aside">
+          <div>
+            <span>🌙</span>
+            <span>🚧</span>
+          </div>
+        </div>
         <div
           style:height={`${i * 60}px`}
           style:padding={`0.5rem`}

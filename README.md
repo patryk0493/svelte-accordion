@@ -2,7 +2,7 @@
 
 ## Svelte component inspired by Visual Studio Code
 
-Project is still in beta!  <!-- Try demo: [here](https://www.demo.pl) -->
+Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 
 [![npm version](https://badge.fury.io/js/svelte-epic-accordion.svg)](https://badge.fury.io/js/svelte-epic-accordion)
 ![Release](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/release.yml/badge.svg)
@@ -24,12 +24,8 @@ Project is still in beta!  <!-- Try demo: [here](https://www.demo.pl) -->
 </script>
 
 <Accordion let:Section>
-	<Section id='one'>
-		Section one
-	</Section>
-	<Section id='two'>
-		Section two
-	</Section>
+  <Section id="one">Section one</Section>
+  <Section id="two">Section two</Section>
 </Accordion>
 ```
 
