@@ -48,12 +48,10 @@ export function accordion(
     );
   });
 
-  function onSectionOpen({
-    detail: { id },
-  }: CustomEvent<SectionToggleDetails>) {
+  function onSectionOpen(e: CustomEvent<SectionToggleDetails>) {
     const _sections = sections.value();
     const changes = calculateChanges({
-      id,
+      id: e.detail.id,
       sections: _sections,
       leftSpace: get(leftSpace),
       isSpaceLeft: get(isSpaceLeft),
@@ -65,7 +63,7 @@ export function accordion(
     });
   }
 
-  const unsubscribe = sectionOpenEvent.subscribe(onSectionOpen);
+  const unsubscribe = sectionOpenEvent.subscribe(node, onSectionOpen);
 
   return {
     destroy() {

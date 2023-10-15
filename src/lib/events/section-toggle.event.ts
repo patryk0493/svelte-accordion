@@ -3,21 +3,23 @@ import type { SectionToggleDetails } from "../contracts/events.type";
 export const TOGGLE_EVENT_NAME = "section:toggle";
 
 declare global {
-  interface WindowEventMap {
-    [TOGGLE_EVENT_NAME]: CustomEvent<SectionToggleDetails>;
-  }
-  interface DocumentEventMap {
+  interface HTMLElementEventMap {
     [TOGGLE_EVENT_NAME]: CustomEvent<SectionToggleDetails>;
   }
 }
 
-function publish(detail: SectionToggleDetails) {
-  document.dispatchEvent(new CustomEvent(TOGGLE_EVENT_NAME, { detail }));
+function publish(node: HTMLElement, detail: SectionToggleDetails) {
+  node.dispatchEvent(
+    new CustomEvent(TOGGLE_EVENT_NAME, { detail, bubbles: true }),
+  );
 }
 
-function subscribe(handler: (e: CustomEvent<SectionToggleDetails>) => void) {
-  document.addEventListener(TOGGLE_EVENT_NAME, handler);
-  return () => document.removeEventListener(TOGGLE_EVENT_NAME, handler);
+function subscribe(
+  node: HTMLElement,
+  handler: (e: CustomEvent<SectionToggleDetails>) => void,
+) {
+  node.addEventListener(TOGGLE_EVENT_NAME, handler);
+  return () => node.removeEventListener(TOGGLE_EVENT_NAME, handler);
 }
 
 export default {

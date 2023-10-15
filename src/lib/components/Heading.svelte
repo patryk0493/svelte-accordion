@@ -12,41 +12,59 @@
 
   const { sections } = getContext<Context>(CONTEXT_KEY);
 
-  async function handleHeadingClick() {
-    sectionToggleEvent.publish({ id });
+  async function toggle(node: HTMLElement) {
+    sectionToggleEvent.publish(node, { id });
     $isOpened = !$isOpened;
     await tick();
     $sections[id] = $sections[id];
   }
+
+  async function handleClick(e: {
+    currentTarget: EventTarget & HTMLDivElement;
+  }) {
+    await toggle(e.currentTarget);
+  }
+
+  async function handleKeyDown(
+    e: KeyboardEvent & {
+      currentTarget: EventTarget & HTMLDivElement;
+    },
+  ) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    await toggle(e.currentTarget);
+  }
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
   class="heading"
-  on:click={handleHeadingClick}
-  on:keydown={handleHeadingClick}
+  on:click={handleClick}
+  on:keydown={handleKeyDown}
   bind:offsetHeight={headerHeight}
   data-testid="heading-{id}"
   aria-hidden="true"
+  tabindex="0"
 >
   <Chevron rotated={$isOpened} />
   <slot name="_header" />
-  <aside><slot name="_aside" /></aside>
+  <div class="aside"><slot name="_aside" /></div>
 </div>
 
 <style>
+  :root {
+    --offset: 2px;
+  }
+
   .heading {
     display: flex;
     padding: 4px;
     gap: 8px;
     cursor: pointer;
+    user-select: none;
   }
 
-  .heading aside {
-    display: none;
-    margin-left: auto;
-  }
-
-  .heading:hover aside {
-    display: block;
+  .heading:focus {
+    outline: var(--offset) solid #2a6489;
+    outline-offset: calc(var(--offset) * -1);
   }
 </style>

@@ -18,6 +18,8 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 
 ## ❓ How to use❓
 
+#### Basic setup:
+
 ```svelte
 <script>
   import Accordion from "svelte-epic-accordion";
@@ -29,9 +31,24 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 </Accordion>
 ```
 
+# ✏️ Examples
+
+```svelte
+<script>
+  import Accordion from "svelte-epic-accordion";
+</script>
+
+<Accordion let:Section>
+  <Section id="one">
+    <span slot="aside">🚀</span>
+    Section one
+  </Section>
+</Accordion>
+```
+
 # 🎯 Goal :
 
-See [TODO](https://github.com/janosh/svelte-multiselect/pull/217) list
+See [TODO list](https://github.com/janosh/svelte-multiselect/pull/217)
 
 ## License
 

@@ -11,7 +11,7 @@
   />
 </svelte:head>
 
-<div class="sample1" style:height="550px">
+<div class="sample sample1" style:height="550px">
   <Accordion let:Section>
     {#each { length: 6 } as section, i}
       <Section id={String(i)}>
@@ -34,9 +34,33 @@
   </Accordion>
 </div>
 
+<div class="sample sample2">
+  <Accordion let:Section>
+    {#each { length: 3 } as section, i}
+      <Section id={String(i)}>
+        <div slot="aside">
+          <button on:click={() => alert("hello")}>🚀</button>
+        </div>
+        <div
+          style:height={`${i * 100}px`}
+          style:padding={`0.5rem`}
+          style:background-color="rgb(21 50 99 / 53%)"
+        >
+          A content of section: {i}
+        </div>
+      </Section>
+    {/each}
+  </Accordion>
+</div>
+
 <style>
   :global(body) {
     font-family: "Nunito Sans", sans-serif;
+  }
+
+  .sample {
+    width: 300px;
+    margin: 10px 0;
   }
 
   .sample1 {

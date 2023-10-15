@@ -8,4 +8,5 @@
 - styling
 - build ONLY with rollup
 - docusaurus
+- different toggling strategies
 - try automate release to npm

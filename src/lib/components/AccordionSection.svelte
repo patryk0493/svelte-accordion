@@ -8,6 +8,7 @@
 
   export let id: string;
   export let isOpen = false;
+  export let isLoading = false;
 
   let contentHeight: number;
   let headerHeight: number;
@@ -20,10 +21,10 @@
   const isOpened = writable(isOpen);
 
   $sections[id] = {
-    isOpened: isOpened,
-    refHeaderHeight: refHeaderHeight,
-    refContentHeight: refContentHeight,
-    height: height,
+    isOpened,
+    refHeaderHeight,
+    refContentHeight,
+    height,
   };
 
   onMount(() => {
@@ -44,16 +45,18 @@
 
 <section
   class="accordion-section"
-  class:open={isOpened}
+  class:opened={$isOpened}
   data-testid="accordion-section-{id}"
 >
   <Heading {id} {isOpened} bind:headerHeight>
     <svelte:fragment slot="_header">
       <slot name="header" />
     </svelte:fragment>
-    <svelte:fragment slot="_aside">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div on:click|stopPropagation slot="_aside">
       <slot name="aside" />
-    </svelte:fragment>
+    </div>
   </Heading>
   {#key $isOpened}
     <div
@@ -71,6 +74,16 @@
 <style>
   .accordion-section {
     background-color: #4a4a4a;
+  }
+
+  .accordion-section :global(.aside) {
+    display: none;
+    margin-left: auto;
+  }
+
+  .accordion-section:hover.opened :global(.aside),
+  .accordion-section.opened:focus-within :global(.aside) {
+    display: block;
   }
 
   .content {
