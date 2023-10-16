@@ -32,14 +32,6 @@ export function accordion(
 
   const isSpaceLeft = derived(leftSpace, ($leftSpace) => $leftSpace > 0);
 
-  const isMoreThanOneOpened = derived(sections, ($sections) => {
-    return (
-      Object.keys($sections).filter(
-        (id) => $sections[id] && get($sections[id]!.isOpened),
-      ).length >= 2
-    );
-  });
-
   const allClosed = derived(sections, ($sections) => {
     return (
       Object.keys($sections).filter(

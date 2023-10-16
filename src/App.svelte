@@ -53,6 +53,12 @@
   </Accordion>
 </div>
 
+<div class="sample sample3">
+  <Accordion let:Section>
+    <Section id="loading" isLoading />
+  </Accordion>
+</div>
+
 <style>
   :global(body) {
     font-family: "Nunito Sans", sans-serif;

@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import type { SectionLookup } from "../contracts/model.type";
+import type { Changes } from "../contracts/changes.type";
 
 type CalculateChangesOptions = {
   id: string;
@@ -15,7 +16,7 @@ export function calculateChanges({
   leftSpace,
   isSpaceLeft,
   allClosed,
-}: CalculateChangesOptions): Array<{ id: string; height: number }> {
+}: CalculateChangesOptions): Changes {
   const { isOpened: _isOpened, refContentHeight } = sections[id]!;
   const contentHeight = get(refContentHeight);
 

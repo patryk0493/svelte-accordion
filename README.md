@@ -33,6 +33,8 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 
 # ✏️ Examples
 
+#### With aside slot (icons displayed after a hover)
+
 ```svelte
 <script>
   import Accordion from "svelte-epic-accordion";
@@ -46,9 +48,21 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 </Accordion>
 ```
 
+#### Loader for a section
+
+```svelte
+<script>
+  import Accordion from "svelte-epic-accordion";
+</script>
+
+<Accordion let:Section>
+  <Section id="one" isLoading />
+</Accordion>
+```
+
 # 🎯 Goal :
 
-See [TODO list](https://github.com/janosh/svelte-multiselect/pull/217)
+See [TODO list](https://github.com/patryk0493/svelte-epic-accordion/blob/main/TODO.md)
 
 ## License
 

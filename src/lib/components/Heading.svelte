@@ -2,11 +2,13 @@
   import { getContext, tick } from "svelte";
   import type { Writable } from "svelte/store";
   import Chevron from "../components/Chevron.svelte";
+  import Loader from "../components/Loader.svelte";
   import type { Context } from "../contracts/model.type";
   import sectionToggleEvent from "../events/section-toggle.event";
   import { CONTEXT_KEY } from "../utils/context-key";
 
   export let id: string;
+  export let isLoading: boolean;
   export let isOpened: Writable<boolean>;
   export let headerHeight: number;
 
@@ -45,6 +47,9 @@
   aria-hidden="true"
   tabindex="0"
 >
+  {#if isLoading}
+    <Loader />
+  {/if}
   <Chevron rotated={$isOpened} />
   <slot name="_header" />
   <div class="aside"><slot name="_aside" /></div>
@@ -53,18 +58,22 @@
 <style>
   :root {
     --offset: 2px;
+    --outline-color: #2a6489;
+    --padding: 4px;
+    --gap: 8px;
   }
 
   .heading {
     display: flex;
-    padding: 4px;
-    gap: 8px;
+    padding: var(--padding);
+    gap: var(--gap);
     cursor: pointer;
     user-select: none;
+    position: relative;
   }
 
   .heading:focus {
-    outline: var(--offset) solid #2a6489;
+    outline: var(--offset) solid var(--outline-color);
     outline-offset: calc(var(--offset) * -1);
   }
 </style>

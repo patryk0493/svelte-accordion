@@ -48,7 +48,7 @@
   class:opened={$isOpened}
   data-testid="accordion-section-{id}"
 >
-  <Heading {id} {isOpened} bind:headerHeight>
+  <Heading {id} {isOpened} {isLoading} bind:headerHeight>
     <svelte:fragment slot="_header">
       <slot name="header" />
     </svelte:fragment>
@@ -72,8 +72,12 @@
 </section>
 
 <style>
+  :root {
+    --section-background: #4a4a4a;
+  }
+
   .accordion-section {
-    background-color: #4a4a4a;
+    background-color: var(--section-background);
   }
 
   .accordion-section :global(.aside) {
@@ -88,6 +92,5 @@
 
   .content {
     overflow-y: auto;
-    background-color: #242424;
   }
 </style>
