@@ -52,7 +52,7 @@
   {/if}
   <Chevron rotated={$isOpened} />
   <slot name="_header" />
-  <div class="aside"><slot name="_aside" /></div>
+  <slot name="_aside" />
 </div>
 
 <style>

@@ -21,7 +21,7 @@ export function calculateChanges({
   const contentHeight = get(refContentHeight);
 
   // ? 0️⃣  no changes
-  if (contentHeight <= 0) return [];
+  if (contentHeight <= 0) return [{ id, height: 150 }];
 
   if (allClosed) {
     return [{ id, height: leftSpace }];

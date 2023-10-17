@@ -1,5 +1,6 @@
 <script lang="ts">
-  import Accordion from "./lib/components/Accordion.svelte";
+  import Accordion from "./lib";
+  import RickAndMorty from "./samples/RickAndMorty.svelte";
 </script>
 
 <svelte:head>
@@ -38,9 +39,7 @@
   <Accordion let:Section>
     {#each { length: 3 } as section, i}
       <Section id={String(i)}>
-        <div slot="aside">
-          <button on:click={() => alert("hello")}>🚀</button>
-        </div>
+        <button slot="aside" on:click={() => alert("hello")}>🚀</button>
         <div
           style:height={`${i * 100}px`}
           style:padding={`0.5rem`}
@@ -59,6 +58,10 @@
   </Accordion>
 </div>
 
+<div class="sample sample4" style:height="400px" style:overflow="auto">
+  <RickAndMorty />
+</div>
+
 <style>
   :global(body) {
     font-family: "Nunito Sans", sans-serif;
@@ -67,11 +70,11 @@
   .sample {
     width: 300px;
     margin: 10px 0;
+    font-size: 12px;
   }
 
   .sample1 {
     overflow-y: auto;
-    font-size: 12px;
     background-color: #626262;
   }
 </style>
