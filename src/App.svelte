@@ -41,7 +41,7 @@
       <Section id={String(i)}>
         <button slot="aside" on:click={() => alert("hello")}>🚀</button>
         <div
-          style:height={`${i * 100}px`}
+          style:height={`${(i + 1) * 50}px`}
           style:padding={`0.5rem`}
           style:background-color="rgb(21 50 99 / 53%)"
         >

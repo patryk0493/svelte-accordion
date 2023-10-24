@@ -21,14 +21,17 @@ export function calculateChanges({
   const contentHeight = get(refContentHeight);
 
   // ? 0️⃣  no changes
-  if (contentHeight <= 0) return [{ id, height: 150 }];
+  const isOpened = get(_isOpened);
+  if (contentHeight <= 0) {
+    if (isOpened) return [{ id, height: 0 }];
+    return [{ id, height: 150 }];
+  }
 
   if (allClosed) {
-    return [{ id, height: leftSpace }];
+    return [{ id, height: leftSpace || contentHeight }];
   }
 
   // ? 1️⃣ one change
-  const isOpened = get(_isOpened);
   if (isOpened === true) {
     return [{ id, height: 0 }];
   }

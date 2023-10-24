@@ -7,7 +7,6 @@
   import { CONTEXT_KEY } from "../utils/context-key";
 
   export let id: string;
-  export let isOpen = false;
   export let isLoading = false;
 
   let contentHeight: number;
@@ -18,7 +17,7 @@
   const height = writable(0);
   const refHeaderHeight = writable(0);
   const refContentHeight = writable(0);
-  const isOpened = writable(isOpen);
+  const isOpened = writable(false);
 
   $sections[id] = {
     isOpened,
