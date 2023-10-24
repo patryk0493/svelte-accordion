@@ -1,5 +1,16 @@
 # svelte-epic-accordion
 
+## 0.0.7
+
+### Patch Changes
+
+- 2eb0089: Add aside slot
+
+  - added new examples
+  - added header slot text and aside (for e.g. icon/action buttons)
+  - added loader variant
+  - padding state details to sections
+
 ## 0.0.6
 
 ### Patch Changes
