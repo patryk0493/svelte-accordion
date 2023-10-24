@@ -2,7 +2,7 @@
 
 ## Svelte component inspired by Visual Studio Code
 
-Project is still in beta!  <!-- Try demo: [here](https://www.demo.pl) -->
+Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 
 [![npm version](https://badge.fury.io/js/svelte-epic-accordion.svg)](https://badge.fury.io/js/svelte-epic-accordion)
 ![Release](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/release.yml/badge.svg)
@@ -18,24 +18,51 @@ Project is still in beta!  <!-- Try demo: [here](https://www.demo.pl) -->
 
 ## ❓ How to use❓
 
+#### Basic setup:
+
 ```svelte
 <script>
   import Accordion from "svelte-epic-accordion";
 </script>
 
 <Accordion let:Section>
-	<Section id='one'>
-		Section one
-	</Section>
-	<Section id='two'>
-		Section two
-	</Section>
+  <Section id="one">Section one</Section>
+  <Section id="two">Section two</Section>
+</Accordion>
+```
+
+# ✏️ Examples
+
+#### With aside slot (icons displayed after a hover)
+
+```svelte
+<script>
+  import Accordion from "svelte-epic-accordion";
+</script>
+
+<Accordion let:Section>
+  <Section id="one">
+    <span slot="aside">🚀</span>
+    Section one
+  </Section>
+</Accordion>
+```
+
+#### Loader for a section
+
+```svelte
+<script>
+  import Accordion from "svelte-epic-accordion";
+</script>
+
+<Accordion let:Section>
+  <Section id="one" isLoading />
 </Accordion>
 ```
 
 # 🎯 Goal :
 
-See [TODO](https://github.com/janosh/svelte-multiselect/pull/217) list
+See [TODO list](https://github.com/patryk0493/svelte-epic-accordion/blob/main/TODO.md)
 
 ## License
 

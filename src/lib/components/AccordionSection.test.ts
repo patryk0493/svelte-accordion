@@ -30,5 +30,5 @@ it("should emit event on heading click", async () => {
   await fireEvent.click(heading);
 
   const section = getByTestId(`accordion-section-${id}`);
-  expect(section).toHaveClass("open");
+  expect(section).toHaveClass("opened");
 });

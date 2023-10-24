@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import type { SectionLookup } from "../contracts/model.type";
+import type { Changes } from "../contracts/changes.type";
 
 type CalculateChangesOptions = {
   id: string;
@@ -15,19 +16,22 @@ export function calculateChanges({
   leftSpace,
   isSpaceLeft,
   allClosed,
-}: CalculateChangesOptions): Array<{ id: string; height: number }> {
+}: CalculateChangesOptions): Changes {
   const { isOpened: _isOpened, refContentHeight } = sections[id]!;
   const contentHeight = get(refContentHeight);
 
   // ? 0️⃣  no changes
-  if (contentHeight <= 0) return [];
+  const isOpened = get(_isOpened);
+  if (contentHeight <= 0) {
+    if (isOpened) return [{ id, height: 0 }];
+    return [{ id, height: 150 }];
+  }
 
   if (allClosed) {
-    return [{ id, height: leftSpace }];
+    return [{ id, height: leftSpace || contentHeight }];
   }
 
   // ? 1️⃣ one change
-  const isOpened = get(_isOpened);
   if (isOpened === true) {
     return [{ id, height: 0 }];
   }
