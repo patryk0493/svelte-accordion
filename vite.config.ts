@@ -15,4 +15,5 @@ export default defineConfig({
       reporter: ["text", "json-summary", "json", "html"],
     },
   },
+  base: "/svelte-epic-accordion",
 });

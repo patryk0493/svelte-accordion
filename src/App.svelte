@@ -4,6 +4,7 @@
   import Demo from "./samples/Demo.svelte";
   import WithAside from "./samples/WithAside.svelte";
   import Loading from "./samples/Loading.svelte";
+  import pkg from "../package.json";
 </script>
 
 <svelte:head>
@@ -16,7 +17,7 @@
 </svelte:head>
 
 <h4 id="demo-header">
-  🪗 Svelte Epic Accordion Demo Page
+  🪗 Svelte Epic Accordion (v. {pkg.version}) Demo Page
   <img src={Svelte} alt="Svelte logo" style="height: 100%;" />
 </h4>
 
