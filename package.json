@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "release": "svelte-package",
+    "release": "svelte-package && npm publish --access public",
     "publish": "npm publish --access public",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
