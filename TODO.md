@@ -4,7 +4,7 @@
 - [x] TS typings
 - [x] vitest
 - [x] aside slot
-- Github page
+- [x] Github page
 - styling
 - build ONLY with rollup
 - docusaurus

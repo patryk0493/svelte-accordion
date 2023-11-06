@@ -2,7 +2,9 @@
 
 ## Svelte component inspired by Visual Studio Code
 
-Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
+Project is still in beta!
+
+Look at the demo: [here](https://patryk0493.github.io/svelte-epic-accordion/)
 
 [![npm version](https://badge.fury.io/js/svelte-epic-accordion.svg)](https://badge.fury.io/js/svelte-epic-accordion)
 ![Release](https://github.com/patryk0493/svelte-epic-accordion/actions/workflows/release.yml/badge.svg)
@@ -16,7 +18,7 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 
 `yarn add -D svelte-epic-accordion`
 
-## ❓ How to use❓
+## How to use❓
 
 #### Basic setup:
 
@@ -31,7 +33,7 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 </Accordion>
 ```
 
-# ✏️ Examples
+## ✏️ Examples
 
 #### With aside slot (icons displayed after a hover)
 
@@ -60,7 +62,7 @@ Project is still in beta! <!-- Try demo: [here](https://www.demo.pl) -->
 </Accordion>
 ```
 
-# 🎯 Goal :
+## 🎯 Goal
 
 See [TODO list](https://github.com/patryk0493/svelte-epic-accordion/blob/main/TODO.md)
 

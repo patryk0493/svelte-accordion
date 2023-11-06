@@ -1,6 +1,10 @@
 <script lang="ts">
-  import Accordion from "./lib";
   import RickAndMorty from "./samples/RickAndMorty.svelte";
+  import Svelte from "./assets/svelte.svg";
+  import Demo from "./samples/Demo.svelte";
+  import WithAside from "./samples/WithAside.svelte";
+  import Loading from "./samples/Loading.svelte";
+  import pkg from "../package.json";
 </script>
 
 <svelte:head>
@@ -12,53 +16,16 @@
   />
 </svelte:head>
 
-<div class="sample sample1" style:height="550px">
-  <Accordion let:Section>
-    {#each { length: 6 } as section, i}
-      <Section id={String(i)}>
-        <div slot="header">header {i}</div>
-        <div slot="aside">
-          <div>
-            <span>🌙</span>
-            <span>🚧</span>
-          </div>
-        </div>
-        <div
-          style:height={`${i * 60}px`}
-          style:padding={`0.5rem`}
-          style:background-color="rgb(47 50 89 / 53%)"
-        >
-          A content of section: {i}
-        </div>
-      </Section>
-    {/each}
-  </Accordion>
-</div>
+<h4 id="demo-header">
+  🪗 Svelte Epic Accordion (v. {pkg.version}) Demo Page
+  <img src={Svelte} alt="Svelte logo" style="height: 100%;" />
+</h4>
 
-<div class="sample sample2">
-  <Accordion let:Section>
-    {#each { length: 3 } as section, i}
-      <Section id={String(i)}>
-        <button slot="aside" on:click={() => alert("hello")}>🚀</button>
-        <div
-          style:height={`${(i + 1) * 50}px`}
-          style:padding={`0.5rem`}
-          style:background-color="rgb(21 50 99 / 53%)"
-        >
-          A content of section: {i}
-        </div>
-      </Section>
-    {/each}
-  </Accordion>
-</div>
-
-<div class="sample sample3">
-  <Accordion let:Section>
-    <Section id="loading" isLoading />
-  </Accordion>
-</div>
-
-<div class="sample sample4" style:height="400px" style:overflow="auto">
+<!-- Samples -->
+<div id="sample1" class="sample" style:height="550px"><Demo /></div>
+<div id="sample2" class="sample"><WithAside /></div>
+<div id="sample3" class="sample"><Loading /></div>
+<div id="sample4" class="sample" style:height="400px" style:overflow="auto">
   <RickAndMorty />
 </div>
 
@@ -67,13 +34,18 @@
     font-family: "Nunito Sans", sans-serif;
   }
 
+  #demo-header {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+
   .sample {
     width: 300px;
     margin: 10px 0;
     font-size: 12px;
   }
 
-  .sample1 {
+  #sample1 {
     overflow-y: auto;
     background-color: #626262;
   }
