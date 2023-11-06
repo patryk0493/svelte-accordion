@@ -27,7 +27,8 @@
     {#each characters.results as character}
       <Section id={character.id} let:sectionState>
         <svelte:fragment slot="header" let:sectionState>
-          {character.name}, the content has: {sectionState.contentHeight}px
+          {character.name}, the content have {sectionState.contentHeight}px
+          height
         </svelte:fragment>
         <a href={character.url} target="_blank" slot="aside">⏩️</a>
         {#if sectionState.isOpen}
@@ -40,6 +41,6 @@
       </Section>
     {/each}
   {:catch error}
-    Error during loading characters
+    An error ocurred during loading characters
   {/await}
 </Accordion>

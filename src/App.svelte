@@ -21,13 +21,11 @@
   <img src={Svelte} alt="Svelte logo" style="height: 100%;" />
 </h4>
 
-<div class="sample sample1" style:height="550px"><Demo /></div>
-
-<div class="sample sample2"><WithAside /></div>
-
-<div class="sample sample3"><Loading /></div>
-
-<div class="sample sample4" style:height="400px" style:overflow="auto">
+<!-- Samples -->
+<div id="sample1" class="sample" style:height="550px"><Demo /></div>
+<div id="sample2" class="sample"><WithAside /></div>
+<div id="sample3" class="sample"><Loading /></div>
+<div id="sample4" class="sample" style:height="400px" style:overflow="auto">
   <RickAndMorty />
 </div>
 
@@ -47,7 +45,7 @@
     font-size: 12px;
   }
 
-  .sample1 {
+  #sample1 {
     overflow-y: auto;
     background-color: #626262;
   }

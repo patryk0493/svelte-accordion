@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request: # ! remove before merge
-    branches: [main] # ! remove before merge
 
 jobs:
   build:
@@ -40,7 +38,7 @@ jobs:
     name: Deploy artifact
     needs: build
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/main' # ! enable before merge
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Download artifact
